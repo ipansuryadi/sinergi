@@ -12,4 +12,8 @@ bootstrap/cache/
 .env
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+<<<<<<< HEAD
 .rocketeer/
+=======
+.rocketeer/
+>>>>>>> 9c1e3fcc403849b0d9f44f0103f4b1bb4fe3d7b0

@@ -93,3 +93,20 @@ footer.page-footer {
 .navbar{
 	height: 10px;
 }
+.thumbnail {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background: none;
+    height: 280px;
+}
+.thumbnail:hover{
+	border:1px solid ;
+}
+.thumbnail img {
+    max-height: 150px;
+}
+.dropdown-menu li > a{
+	font-size: small;
+}

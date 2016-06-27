@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar" id="nav-bar-id">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="background-color: #3F3F3F;">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

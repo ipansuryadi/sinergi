@@ -37,42 +37,39 @@
                         <button class="btn btn-default waves-effect waves-light">{{config('label')->add_to_cart}}</button>
                     </form>
                 </div>
-                <div class="col-sm-6 col-md-3" id="featured-container-m">
-                    <a href="{{ route('show.product', $product->product_name) }}">
-                        <div class="col-xs-12">
-                            <div id="featured-product-name-container">
-                                <h5 class="center-on-small-only" id="featured-product-name">{{ substr($product->product_name,0,20) }}...</h5>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            @if ($product->photos->count() === 0)
-                            <img src="{{url('/')}}/src/public/images/no-image-found.jpg" alt="No Image Found Tag" style="width: 200px; height: 200px;" id="image-m">
-                            @else
-                            @if ($product->featuredPhoto)
-                            <img src="{{url('/')}}/{{ $product->featuredPhoto->thumbnail_path }}" alt="Photo ID: {{ $product->featuredPhoto->id }}" class="img-responsive img-thumbnail" id="image-m" />
-                            @elseif(!$product->featuredPhoto)
-                            <img src="{{url('/')}}/{{ $product->photos->first()->thumbnail_path}}" alt="Photo" class="img-responsive img-thumbnail" id="image-m"  />
-                            @else
-                            N/A
-                            @endif
-                            @endif
-                        </div>
-                        <div class="col-xs-6">
+                <div class="col-xs-6 visible-xs">
+                <a href="{{ route('show.product', $product->product_name) }}">
+                    <div class="thumbnail">
+                        @if ($product->photos->count() === 0)
+                        <img src="{{url('/')}}/src/public/images/no-image-found.jpg" alt="No Image Found Tag" id="image-m" style="width: 200px; height: 200px;">
+                        @else
+                        @if ($product->featuredPhoto)
+                        <img src="{{url('/')}}/{{ $product->featuredPhoto->thumbnail_path }}"/>
+                        @elseif(!$product->featuredPhoto)
+                        <img src="{{url('/')}}/{{ $product->photos->first()->thumbnail_path}}"/>
+                        @else
+                        N/A
+                        @endif
+                        @endif
+                        <div class="caption">
+                            <span>{{ substr($product->product_name,0,20) }}</span>
                             @if($product->reduced_price == 0)
-                            <div class="light-300 black-text medium-500" id="Product_Reduced-Price">{{  $product->price }}</div>
+                            <div class="light-300 black-text light-300">{{  xformatMoney($product->price) }}</div>
                             @else
-                            <div class="green-text medium-500" id="Product_Reduced-Price">{{ $product->reduced_price }}</div>
+                            <div class="light-300 black-text light-300"><s>{{  xformatMoney($product->price) }}</s></div>
+                            <div class="green-text medium-500">{{ xformatMoney($product->reduced_price) }}</div>
                             @endif
+                            <form action="{{url('/')}}/cart/add" method="post" name="add_to_cart">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="product" value="{{$product->id}}" />
+                                <input type="hidden" name="weight" value="{{$product->weight}}" />
+                                <input type="hidden" name="qty" value="1" />
+                                <button class="btn btn-sm btn-info" style="position:absolute; bottom: 0; left: 5%; width:80%;">{{config('label')->add_to_cart}}</button>
+                            </form>
                         </div>
-                    </a>
-                    <form action="{{url('/')}}/cart/add" method="post" name="add_to_cart">
-                        {!! csrf_field() !!}
-                        <input type="hidden" name="product" value="{{$product->id}}" />
-                        <input type="hidden" name="weight" value="{{$product->weight}}" />
-                        <input type="hidden" name="qty" value="1" />
-                        <button class="btn btn-default waves-effect waves-light">ADD TO CART</button>
-                    </form>
-                </div>
+                    </div>
+                </a>
+            </div>
                 @endforeach
             </div>
         </div>

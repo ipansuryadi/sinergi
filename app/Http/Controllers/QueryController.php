@@ -24,7 +24,7 @@ class QueryController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function search() {
-
+        // return dd(Input::all());
         // From Traits/CategoryTrait.php
         // ( Show Categories in side-nav )
         $categories = $this->categoryAll();
@@ -39,18 +39,28 @@ class QueryController extends Controller {
 
         // Gets the query string from our form submission
         $query = Input::get('search');
-        $separate = explode('__',$query);
-        if (count($separate) > 2) {
-            $query = $separate[2];
-        }
+        // $separate = explode('__',$query);
+        // if (count($separate) > 2) {
+        //     $query = $separate[2];
+        // }
         // Returns an array of products that have the query string located somewhere within
         // our products product name. Paginate them so we can break up lots of search results.
         $search = Product::all();
-        $search_result = Product::where($where = 'product_name', 'LIKE', '%' . $query . '%')->paginate(200);
-
-        // If no results come up, flash info message with no results found message.
+        if (Input::get('cat_id')!= "all") {
+            $check_subcat = Category::where('parent_id',Input::get('cat_id'))->select('id')->get();
+            $catid = array();
+            foreach ($check_subcat as $value) {
+                $catid[] = $value->id;
+            }
+            $search_result = Product::where('product_name', 'LIKE', '%' . $query . '%')
+            ->whereIn('cat_id', $catid)
+            ->paginate(200);
+            // return dd($search_result);
+        }else{
+            $search_result = Product::where('product_name', 'LIKE', '%' . $query . '%')->paginate(200);
+        }
         if ($search_result->isEmpty()) {
-            //ipansuryadiflash()->info('Not Found', 'No search results found.');
+            // flash()->info('Not Found', 'No search results found.');
             return redirect('/');
         }
 

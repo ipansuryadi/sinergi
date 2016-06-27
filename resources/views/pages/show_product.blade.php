@@ -1,8 +1,8 @@
 @extends('app')
 @section('content')
-<div id="wrapper--">
+<div id="wrapper----">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 visible-md visible-lg">
             @include('pages.partials.side-nav-two')
         </div>
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
@@ -106,6 +106,10 @@
                 </div>
                 <br><br><hr>
             </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 visible-sm visible-xs">
+            @include('pages.partials.side-nav-two')
         </div>
     </div>
     @include('pages.partials.footer')

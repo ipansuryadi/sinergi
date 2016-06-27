@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -30,5 +31,7 @@ class Controller extends BaseController
             ->select(DB::raw("CONCAT(categories.category,'__',brands.brand_name,'__',products.product_name) AS product_list"))
             ->get();
         view()->share('product_list_search', $product_list_search);
+        $category_search = Category::whereNull('parent_id')->get();
+        view()->share('category_search',$category_search);
     }
 }

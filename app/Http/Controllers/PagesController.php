@@ -71,7 +71,7 @@ class PagesController extends Controller {
     public function displayProducts($id) {
 
         // Get the Category ID , so we can display the category name under each list view
-        $categories = Category::where('id', '=', $id)->get();
+        $category = Category::where('id', '=', $id)->get();
 
         $categories_find = Category::where('id', '=', $id)->find($id);
 
@@ -82,7 +82,7 @@ class PagesController extends Controller {
 
         // From Traits/CategoryTrait.php
         // ( Show Categories in side-nav )
-        $category = $this->categoryAll();
+        $categories = $this->categoryAll();
 
         // From Traits/BrandAll.php
         // Get all the Brands
@@ -114,7 +114,7 @@ class PagesController extends Controller {
     public function displayProductsByBrand($id) {
 
         // Get the Brand ID , so we can display the brand name under each list view
-        $brands = Brand::where('id', '=', $id)->get();
+        $brand = Brand::where('id', '=', $id)->get();
 
         $brands_find = Brand::where('id', '=', $id)->find($id);
 
@@ -125,11 +125,11 @@ class PagesController extends Controller {
 
         // From Traits/CategoryTrait.php
         // ( Show Categories in side-nav )
-        $category = $this->categoryAll();
+        $categories = $this->categoryAll();
 
         // From Traits/BrandAll.php
         // Get all the Brands
-        $brand = $this->brandsAll();
+        $brands = $this->brandsAll();
 
         // From Traits/SearchTrait.php
         // ( Enables capabilities search to be preformed on this view )
@@ -145,7 +145,7 @@ class PagesController extends Controller {
         // ( Count how many items in Cart for signed in user )
         $cart_count = $this->countProductsInCart();
         $rand_brands = Brand::orderByRaw('RAND()')->take(6)->get();
-        return view('brand.show', compact('products', 'brands', 'brand', 'category', 'search', 'cart_count','rand_brands'))->with('count', $count);
+        return view('brand.show', compact('products', 'brands', 'brand', 'categories', 'search', 'cart_count','rand_brands'))->with('count', $count);
     }
 
     public function about(){

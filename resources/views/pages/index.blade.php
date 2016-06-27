@@ -2,7 +2,7 @@
 @section('content')
 <div id="wrapper--">
     @include('pages.partials.carousel')
-    @include('pages.partials.mobile-header')
+    {{-- @include('pages.partials.mobile-header') --}}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 visible-md visible-lg">
             @include('pages.partials.side-nav-two')

@@ -159,11 +159,11 @@
                                         <a href="{{ url('admin/verify') }}/{{$order->id}}" class="btn btn-primary pull-right">Verify Payment</a>
                                         @elseif ($order->status == "paid - waiting for delivery" || $order->status == "cod")
                                         <a href="{{ url('admin/delivery') }}/{{$order->id}}" class="btn btn-primary pull-right">Delivery</a>
-                                        @elseif ($order->status == "delivery")
+                                        @elseif ($order->status == "on delivery")
                                         <form action="{{ url('admin/finish') }}" class="finish_transaction_form" method="POST" role="form">
                                             {{csrf_field()}}
                                             <input type="hidden" name="order_id" value="{{$order->id}}">
-                                            <button id="finish-transaction-btn" class="btn btn-primary">Finish Transaction</button>
+                                            <button type="submit" class="btn btn-primary">Finish Transaction</button>
                                         </form>
                                         @elseif ($order->status == "")
                                         {{-- true expr --}}

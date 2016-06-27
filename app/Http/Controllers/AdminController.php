@@ -221,7 +221,7 @@ class AdminController extends Controller {
     }
 
     public function finishTransaction(Request $request){
-        $order = Order::where('id',Input::get('order_id'))->update(['status'=>'finished']);
+        $order = Order::where('id',Input::get('order_id'))->update(['status'=>'finished', 'modified_by'=>Auth::user()->username]);
         //ipansuryadiflash()->success('Success', 'Order finished...');
         return redirect()->route('admin.pages.order');
     }

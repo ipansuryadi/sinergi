@@ -27,6 +27,10 @@
                         <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="badge green">{{ $cart_count }}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle btn btn-sm btn-secondary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (condition)
+                                    <span class="badge green">0</span>
+                                @endif
+                                
                                 {{ $user->username }} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" id="dropdwon">
                                     @if ($user->admin=="1")

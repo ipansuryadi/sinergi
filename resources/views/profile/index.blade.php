@@ -70,13 +70,13 @@
                                                     <td><b>{{config('label')->shipping_cost}}</b></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td>{{$order->total_ongkir}}</td>
+                                                    <td>{{xformatMoney($order->total_ongkir)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
                                                     <td><b>{{config('label')->total}}</b></td>
-                                                    <td><b>${{xformatMoney($order->total)}}</b></td>
+                                                    <td><b>{{xformatMoney($order->total)}}</b></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">
